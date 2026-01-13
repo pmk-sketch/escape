@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>교실 방탈출</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://t4.ftcdn.net/jpg/04/11/78/73/360_F_411787346_ppT0ACrQZrXWKyejvRtFjmx8Ie1GnUKS.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .click-target {
+            position: absolute;
+            cursor: pointer;
+            z-index: 999;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.01); 
+        }
+
+        #clock-target {
+            top: 4%;
+            left: 44.5%;
+            width: 11%;
+            height: 10%;
+            border-radius: 50%;
+        }
+
+        #chair-target {
+            top: 72%;
+            left: 2%;
+            width: 25%;
+            height: 25%;
+        }
+
+        #lock-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: #f1c40f;
+            border: 4px solid #d4ac0d;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+        }
+
+        #hint-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            z-index: 2000;
+            text-align: center;
+            min-width: 280px;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="clock-target" class="click-target" onclick="clickClock()"></div>
+    <div id="chair-target" class="click-target" onclick="showHint()"></div>
+    <div id="lock-btn" onclick="askPassword()">🔒</div>
+</div>
+
+<div id="hint-modal">
+    <h2 style="margin-bottom: 10px;">🔍 단서</h2>
+    <p id="hint-content">시계의 숫자를 더하라.</p>
+    <button onclick="closeModal()">닫기</button>
+</div>
+
+<script>
+    function clickClock() {
+        alert("🕰️ 지금은 16시 25분이야.");
+    }
+
+    function showHint() {
+        document.getElementById('hint-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('hint-modal').style.display = 'none';
+    }
+
+    function askPassword() {
+        const answer = prompt("🔒 비밀번호 2자리를 입력하세요.");
+        
+        if (answer === "41") {
+            alert("🎉 정답입니다! 다음 스테이지로 이동합니다!");
+            // 요청하신 퀴즈5 사이트로 주소를 변경했습니다.
+            window.location.href = "https://jadooooooo-00.github.io/school3/quiz5";
+        } else if (answer !== null) {
+            alert("❌ 틀렸습니다. 다시 생각해보세요.");
+        }
+    }
+</script>
+
+</body>
+</html>
